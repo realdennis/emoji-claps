@@ -16,7 +16,15 @@ $ yarn add emoji-claps
 ```
 or in browser
 ```html
-<script src="https://cdn.jsdelivr.net/npm/emoji-claps/dist/emoji-claps.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emoji-claps@latest/dist/emoji-claps.js"></script>
+```
+
+## Polyfill
+
+The animation use `Element.animate` method and `effect.target`, it's fancy and imperative but not fully support for low version browser & Safari, so please run the [`web-animation next` polyfill](https://github.com/web-animations/web-animations-js) before initial.
+
+```html
+<script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations-next-lite.min.js"></script>
 ```
 
 ## Usage

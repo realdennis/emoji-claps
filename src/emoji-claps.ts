@@ -8,7 +8,7 @@ import {
 
 @customElement("emoji-claps")
 export class EmojiClaps extends LitElement {
-  @property({ type: String }) emoji = "👎";
+  @property({ type: String }) emoji = "👍";
   @property({ type: Number, reflect: true }) currentcount = 0;
   @property({ type: Number }) maxcount = 50;
   @property({ type: Array }) bullets = ["🥰", "🎉", "🔥", "👍"];
@@ -19,21 +19,16 @@ export class EmojiClaps extends LitElement {
   private congratsAnimate!: () => Animation;
   private buttonAnimate!: () => Animation;
   private bubbleAnimate!: () => Animation;
+  private alreadyFull: boolean;
 
   constructor() {
     super();
-    this.onClapHanlder = this.onClapHanlder.bind(this);
-    this.onHoldHandler = this.onHoldHandler.bind(this);
-    this.onCancelHoldHandler = this.onCancelHoldHandler.bind(this);
-    this.playClapAnimate = this.playClapAnimate.bind(this);
-    this.fireFullEvent = this.fireFullEvent.bind(this);
-    // Bind the method's `this`
-
     this.holdIntervalTimer = null;
     window.addEventListener("mouseup", this.onCancelHoldHandler);
     window.addEventListener("blur", this.onCancelHoldHandler);
     // Handle about hold effect
   }
+
   disconnectedCallback() {
     window.removeEventListener("mouseup", this.onCancelHoldHandler);
     window.removeEventListener("blur", this.onCancelHoldHandler);
@@ -53,41 +48,42 @@ export class EmojiClaps extends LitElement {
     this.bubbleAnimate = bubbleBounceCreator(countBubble!);
   }
 
-  playClapAnimate() {
+  playClapAnimate = () => {
     [this.bubbleAnimate, this.buttonAnimate, this.congratsAnimate].reduce(
       perFrameReducer
     );
-  }
+  };
 
-  onHoldHandler() {
+  onHoldHandler = () => {
     this.holdIntervalTimer = window.setInterval(this.onClapHanlder, 150);
-  }
+  };
 
-  onCancelHoldHandler() {
+  onCancelHoldHandler = () => {
     this.holdIntervalTimer !== null &&
       window.clearInterval(this.holdIntervalTimer);
-  }
+  };
 
-  onClickHandler() {
+  onClickHandler = () => {
+    this.fireEvent("click");
     this.onClapHanlder();
-    const clickEvent = new Event("click");
-    this.dispatchEvent(clickEvent);
-  }
+  };
 
-  onClapHanlder() {
+  onClapHanlder = () => {
     if (this.currentcount < this.maxcount) {
       this.currentcount++;
     }
-    if (this.currentcount === 50) {
-      this.fireFullEvent();
+    if (this.currentcount === 50 && !this.alreadyFull) {
+      this.fireEvent("full");
+      this.alreadyFull = true;
     }
     this.playClapAnimate();
-  }
+  };
 
-  fireFullEvent() {
-    const fullEvent = new Event("full");
-    this.dispatchEvent(fullEvent);
-  }
+  fireEvent = (eventType: string) => {
+    const eventObj = new Event(eventType);
+    this.dispatchEvent(eventObj);
+  };
+
   render() {
     return html`
       <style>
