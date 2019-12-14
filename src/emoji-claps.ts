@@ -9,12 +9,12 @@ import {
 @customElement("emoji-claps")
 export class EmojiClaps extends LitElement {
   @property({ type: String }) emoji = "👎";
-  @property({ type: Number, reflect: true }) currentcount = 3;
+  @property({ type: Number, reflect: true }) currentcount = 0;
   @property({ type: Number }) maxcount = 50;
   @property({ type: Array }) bullets = ["🥰", "🎉", "🔥", "👍"];
   @property({ type: Number }) bulletcount = 5;
   @property({ type: String }) prefix = "+";
-  
+
   private holdIntervalTimer: number | null = 0;
   private congratsAnimate!: () => Animation;
   private buttonAnimate!: () => Animation;
