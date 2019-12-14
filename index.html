@@ -2,8 +2,7 @@
 
 <html lang="en">
 <head>
-  <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script type="module" src="src/emoji-claps.js"></script>
+  <script type="module" src="dist/emoji-claps.js"></script>
   <meta name="description" content="Emoji Clap Element Demo">
   <title>Emoji Clap Element</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,7 @@
       console.log("Full")
     })
     emojiClaps.addEventListener('click', () => {
-      console.log('send beacon... current count is ', emojiClaps.currentcount)
+      console.log('send beacon... current count is', emojiClaps.currentcount)
     })
   </script>
 </body>

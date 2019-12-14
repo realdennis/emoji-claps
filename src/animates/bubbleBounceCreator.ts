@@ -1,9 +1,13 @@
 import elementAnimateThrottle from "element-animate-throttle";
-const bubbleBounceThrottle = countBubbleEl => {
-  typeof countBubbleEl.animateThrottle !== "function" &&
+
+interface ElementThrottleAnimate extends Element{
+  animateThrottle:(keyframe:object[], options:object)=>Animation
+}
+const bubbleBounceThrottle = (countBubbleEl:Element|ElementThrottleAnimate) => {
+  typeof (countBubbleEl as ElementThrottleAnimate).animateThrottle !== "function" &&
     elementAnimateThrottle(countBubbleEl);
   return () =>
-    countBubbleEl.animateThrottle(
+    (countBubbleEl as ElementThrottleAnimate).animateThrottle(
       [
         // keyframes
         { transform: "scale(1)" },

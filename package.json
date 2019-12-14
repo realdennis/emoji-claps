@@ -1,11 +1,18 @@
 {
   "name": "emoji-claps",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A custom element which is experience-addicted for clap / like / dislike.",
   "repository": "https://github.com/realdennis/emoji-claps.git",
-  "main": "src/emoji-clap.js",
+  "source": "src/emoji-claps.ts",
+  "main": "dist/emoji-claps.js",
+  "types": "dist/emoji-claps.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "polyserve",
+    "dev": "webpack-dev-server",
+    "build": "webpack --mode=production",
+    "prepublishOnly": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "realdennis",
@@ -19,6 +26,12 @@
     "suicide-animate": "^0.0.2"
   },
   "devDependencies": {
-    "polyserve": "^0.27.15"
+    "@types/node": "^12.12.17",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.9.0"
   }
 }

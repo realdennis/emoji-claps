@@ -1,9 +1,12 @@
 import elementAnimateThrottle from "element-animate-throttle";
-const buttonBounceThrottle = clapButtonEl => {
-  typeof clapButtonEl.animateThrottle !== "function" &&
+interface ElementThrottleAnimate extends Element {
+  animateThrottle: (keyframe: object[], options: object) => Animation;
+}
+const buttonBounceThrottle = (clapButtonEl: Element | ElementThrottleAnimate) => {
+  typeof (clapButtonEl as ElementThrottleAnimate).animateThrottle !== "function" &&
     elementAnimateThrottle(clapButtonEl);
   return () =>
-    clapButtonEl.animateThrottle(
+    (clapButtonEl as ElementThrottleAnimate).animateThrottle(
       [
         // keyframes
         { transform: "scale(1)" },
