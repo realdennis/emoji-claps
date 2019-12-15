@@ -8,7 +8,7 @@
 ## What's new?
 
 Yes, you can `click` and `hold` to increase the number.
-Try it in [codepen](https://codepen.io/realdennis/pen/RwNGLEE)!
+Try it on [Codepen](https://codepen.io/realdennis/pen/RwNGLEE)!
 
 ## Installation
 ```sh
@@ -16,7 +16,7 @@ $ yarn add emoji-claps
 ```
 or in browser
 ```html
-<script src="https://cdn.jsdelivr.net/npm/emoji-claps@latest/dist/emoji-claps.js"></script>
+<script src="https://unpkg.com/emoji-claps/dist/emoji-claps.js"></script>
 ```
 
 ## Polyfill

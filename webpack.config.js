@@ -9,7 +9,8 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname),
     compress: true,
-    port: 9000
+    host: "0.0.0.0",
+    port: 3000
   },
   resolve: {
     extensions: [".webpack.js", ".web.js", ".ts", ".js"]

@@ -95,9 +95,10 @@ export class EmojiClaps extends LitElement {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          user-select: none;
+          -webkit-user-select: none;
         }
         .wrapper {
-          user-select: none;
           margin: 10px;
           display: flex;
           justify-content: center;
@@ -137,7 +138,10 @@ export class EmojiClaps extends LitElement {
       <div
         class="wrapper clap-container"
         @mousedown=${this.onHoldHandler}
+        @touchstart=${this.onHoldHandler}
         @mouseup=${this.onCancelHoldHandler}
+        @touchend=${this.onCancelHoldHandler}
+        @touchcancel=${this.onCancelHoldHandler}
         @click=${this.onClapHanlder}
       >
         <div
