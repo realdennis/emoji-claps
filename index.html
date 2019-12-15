@@ -3,14 +3,13 @@
 <html lang="en">
 <head>
   <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations-next-lite.min.js"></script>
-  <script type="module" src="dist/emoji-claps.js"></script>
-  <meta name="description" content="Emoji Clap Element Demo">
   <title>Emoji Clap Element</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta charset="UTF-8">
 </head>
 <body>
+  <script type="module" src="src/emoji-claps.ts"></script>
   <emoji-claps emoji="👏" currentcount="30" maxcount="50" bullets='["😍","🎉","🔥","😆"]' bulletcount="6" prefix="+" />
   <script>
     const emojiClaps = document.querySelector('emoji-claps');
