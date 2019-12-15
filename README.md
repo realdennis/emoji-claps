@@ -11,12 +11,14 @@ Yes, you can `click` and `hold` to increase the number.
 Try it on [Codepen](https://codepen.io/realdennis/pen/RwNGLEE)!
 
 ## Installation
+
 ```sh
-$ yarn add emoji-claps
+$ yarn add emoji-claps // ES module
 ```
 or in browser
 ```html
-<script src="https://unpkg.com/emoji-claps/dist/emoji-claps.js"></script>
+<script src="https://unpkg.com/emoji-claps/dist/emoji-claps.umd.js"></script>
+<!-- It's umd bundle-->
 ```
 
 ## Polyfill

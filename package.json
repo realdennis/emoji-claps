@@ -1,6 +1,6 @@
 {
   "name": "emoji-claps",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "A custom element which is experience-addicted for clap / like / dislike.",
   "repository": "https://github.com/realdennis/emoji-claps.git",
   "source": "src/emoji-claps.ts",
