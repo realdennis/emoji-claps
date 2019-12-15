@@ -1,4 +1,5 @@
 const path = require("path");
+const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
   entry: "./src/emoji-claps.ts",
   output: {
@@ -17,5 +18,13 @@ module.exports = {
   },
   module: {
     rules: [{ test: /\.ts$/, loader: "ts-loader" }]
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true
+      })
+    ]
   }
 };
