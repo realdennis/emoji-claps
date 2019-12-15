@@ -1,19 +1,19 @@
-import { LitElement, html, customElement, property } from "lit-element";
-import { perFrameReducer } from "@realdennis/next-frame";
+import { LitElement, html, customElement, property } from 'lit-element';
+import { perFrameReducer } from '@realdennis/next-frame';
 import {
   bubbleBounceCreator,
   buttonBounceCreator,
   fireworkAnimateCreator
-} from "./animates/index";
+} from './animates/index';
 
-@customElement("emoji-claps")
+@customElement('emoji-claps')
 export class EmojiClaps extends LitElement {
-  @property({ type: String }) emoji = "👍";
+  @property({ type: String }) emoji = '👍';
   @property({ type: Number, reflect: true }) currentcount = 0;
   @property({ type: Number }) maxcount = 50;
-  @property({ type: Array }) bullets = ["🥰", "🎉", "🔥", "👍"];
+  @property({ type: Array }) bullets = ['🥰', '🎉', '🔥', '👍'];
   @property({ type: Number }) bulletcount = 5;
-  @property({ type: String }) prefix = "+";
+  @property({ type: String }) prefix = '+';
 
   private holdIntervalTimer: number | null = 0;
   private congratsAnimate!: () => Animation;
@@ -24,21 +24,21 @@ export class EmojiClaps extends LitElement {
   constructor() {
     super();
     this.holdIntervalTimer = null;
-    window.addEventListener("mouseup", this.onCancelHoldHandler);
-    window.addEventListener("blur", this.onCancelHoldHandler);
+    window.addEventListener('mouseup', this.onCancelHoldHandler);
+    window.addEventListener('blur', this.onCancelHoldHandler);
     // Handle about hold effect
   }
 
   disconnectedCallback() {
-    window.removeEventListener("mouseup", this.onCancelHoldHandler);
-    window.removeEventListener("blur", this.onCancelHoldHandler);
+    window.removeEventListener('mouseup', this.onCancelHoldHandler);
+    window.removeEventListener('blur', this.onCancelHoldHandler);
     // Cleanup the custom-element effect
   }
 
   firstUpdated() {
-    const clapContainer = this.shadowRoot!.querySelector(".clap-container");
-    const clapButton = this.shadowRoot!.querySelector(".clap-button");
-    const countBubble = this.shadowRoot!.querySelector(".count-bubble");
+    const clapContainer = this.shadowRoot!.querySelector('.clap-container');
+    const clapButton = this.shadowRoot!.querySelector('.clap-button');
+    const countBubble = this.shadowRoot!.querySelector('.count-bubble');
     this.congratsAnimate = fireworkAnimateCreator(
       clapContainer as Element,
       this.bullets,
@@ -55,6 +55,8 @@ export class EmojiClaps extends LitElement {
   };
 
   onHoldHandler = () => {
+    // Should make sure clear effect
+    this.onCancelHoldHandler();
     this.holdIntervalTimer = window.setInterval(this.onClapHanlder, 150);
   };
 
@@ -64,7 +66,7 @@ export class EmojiClaps extends LitElement {
   };
 
   onClickHandler = () => {
-    this.fireEvent("click");
+    this.fireEvent('click');
     this.onClapHanlder();
   };
 
@@ -73,7 +75,7 @@ export class EmojiClaps extends LitElement {
       this.currentcount++;
     }
     if (this.currentcount === 50 && !this.alreadyFull) {
-      this.fireEvent("full");
+      this.fireEvent('full');
       this.alreadyFull = true;
     }
     this.playClapAnimate();
@@ -137,6 +139,7 @@ export class EmojiClaps extends LitElement {
       <div class="wrapper count-bubble">${this.prefix}${this.currentcount}</div>
       <div
         class="wrapper clap-container"
+        @contextmenu=${e => e.preventDefault()}
         @mousedown=${this.onHoldHandler}
         @touchstart=${this.onHoldHandler}
         @mouseup=${this.onCancelHoldHandler}
