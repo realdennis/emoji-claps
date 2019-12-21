@@ -1,4 +1,4 @@
-import { LitElement, html, customElement, property } from 'lit-element';
+import { LitElement, html, css, customElement, property } from 'lit-element';
 import { perFrameReducer } from '@realdennis/next-frame';
 import {
   bubbleBounceCreator,
@@ -86,56 +86,59 @@ export class EmojiClaps extends LitElement {
     this.dispatchEvent(eventObj);
   };
 
+  static get styles() {
+    return css`
+      :host {
+        width: 100%;
+        height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .wrapper {
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .count-bubble {
+        background-color: black;
+        color: white;
+        font-size: 10px;
+        width: 35px;
+        height: 35px;
+        border-radius: 100%;
+      }
+      .clap-container {
+        user-select: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-touch-callout: none;
+        position: relative;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+      }
+      .clap-button {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s ease filter;
+        z-index: 1;
+        font-size: 40px;
+        user-select: none;
+        border-radius: 100%;
+      }
+    `
+  }
+  
   render() {
     return html`
-      <style>
-        :host {
-          width: 100%;
-          height: 100%;
-          font-family: Arial, Helvetica, sans-serif;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          user-select: none;
-          -webkit-user-select: none;
-        }
-        .wrapper {
-          margin: 10px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .count-bubble {
-          background-color: black;
-          color: white;
-          font-size: 10px;
-          width: 35px;
-          height: 35px;
-          border-radius: 100%;
-        }
-        .clap-container {
-          user-select: none;
-          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-          -webkit-touch-callout: none;
-          position: relative;
-          width: 60px;
-          height: 60px;
-          cursor: pointer;
-        }
-        .clap-button {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: 0.5s ease filter;
-          z-index: 1;
-          font-size: 40px;
-          user-select: none;
-          border-radius: 100%;
-        }
-      </style>
       <div class="wrapper count-bubble">${this.prefix}${this.currentcount}</div>
       <div
         class="wrapper clap-container"
