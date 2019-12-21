@@ -38,7 +38,8 @@ The animation use `Element.animate` method and `effect.target`, it's fancy and i
              maxcount="50" 
              bullets='["😍","🎉","🔥","😆"]' 
              bulletcount="6" 
-             prefix="+" />
+             prefix="+"
+             ></emoji-claps>
 ```  
 
 ## Event
