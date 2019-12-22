@@ -1,4 +1,5 @@
-import { throttle } from "lodash-es";
+import throttle from "lodash-es/throttle"; 
+// Though bundle tool will shake other modules, but browser import will make redundant requests.
 import { nextFrame } from "@realdennis/next-frame";
 import suicideAnimate from "suicide-animate";
 const genIconsFragment = (bullets: string[], count: number) => {
