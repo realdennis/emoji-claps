@@ -16,9 +16,9 @@ export class EmojiClaps extends LitElement {
   @property({ type: String }) prefix = '+';
 
   private holdIntervalTimer: number | null = 0;
-  private congratsAnimate!: () => Animation;
-  private buttonAnimate!: () => Animation;
-  private bubbleAnimate!: () => Animation;
+  private congratsAnimate: () => (Animation | Promise<void>);
+  private buttonAnimate: () => Animation;
+  private bubbleAnimate: () => Animation;
   private alreadyFull: boolean;
 
   constructor() {
@@ -136,7 +136,7 @@ export class EmojiClaps extends LitElement {
       }
     `
   }
-  
+
   render() {
     return html`
       <div class="wrapper count-bubble">${this.prefix}${this.currentcount}</div>
