@@ -12,7 +12,7 @@ export default [
     external: [
       "lit-element",
       "@realdennis/next-frame",
-      "lodash-es",
+      "lodash-es/throttle",
       "suicide-animate",
       "element-animate-throttle"
     ]
