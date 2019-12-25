@@ -6,6 +6,7 @@
   "source": "src/emoji-claps.ts",
   "main": "dist/emoji-claps.js",
   "module": "dist/emoji-claps.js",
+  "umd": "dist/emoji-claps.umd.js",
   "types": "dist/emoji-claps.d.ts",
   "files": [
     "dist"

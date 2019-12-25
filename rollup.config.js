@@ -1,11 +1,12 @@
+import pkg from "./package.json";
 import typescript from "rollup-plugin-typescript2";
 import resolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 export default [
   {
-    input: "src/emoji-claps.ts",
+    input: pkg.source,
     output: {
-      file: "dist/emoji-claps.js",
+      file: pkg.module,
       format: "esm"
     },
     plugins: [typescript()],
@@ -18,11 +19,11 @@ export default [
     ]
   },
   {
-    input: "src/emoji-claps.ts",
+    input: pkg.source,
     output: {
-      file: "dist/emoji-claps.umd.js",
+      file: pkg.umd,
       format: "umd",
-      name: "emoji-claps"
+      name: pkg.name
     },
     plugins: [resolve(), typescript(), terser()]
   }
