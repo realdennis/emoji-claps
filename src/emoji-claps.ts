@@ -15,21 +15,21 @@ export class EmojiClaps extends LitElement {
   @property({ type: Number }) bulletcount = 5;
   @property({ type: String }) prefix = '+';
 
-  private holdIntervalTimer: number | null = 0;
+  private holdIntervalTimer: number | null;
   private congratsAnimate: () => (Animation | Promise<void>);
   private buttonAnimate: () => Animation;
   private bubbleAnimate: () => Animation;
   private alreadyFull: boolean;
 
-  constructor() {
-    super();
-    this.holdIntervalTimer = null;
+  connectedCallback() {
+    super.connectedCallback();
     window.addEventListener('mouseup', this.onCancelHoldHandler);
     window.addEventListener('blur', this.onCancelHoldHandler);
     // Handle about hold effect
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     window.removeEventListener('mouseup', this.onCancelHoldHandler);
     window.removeEventListener('blur', this.onCancelHoldHandler);
     // Cleanup the custom-element effect
