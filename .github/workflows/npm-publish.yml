@@ -14,6 +14,10 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: 10.0.0
+    - name: Install
+      uses: CultureHQ/actions-yarn@master
+      with:
+        args: install
     - name: Publish if version has been updated
       uses: pascalgn/npm-publish-action@1.2.0
       with: # All of theses inputs are optional
