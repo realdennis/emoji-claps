@@ -74,7 +74,7 @@ export class EmojiClaps extends LitElement {
     if (this.currentcount < this.maxcount) {
       this.currentcount++;
     }
-    if (this.currentcount === this.maxcount !this.alreadyFull) {
+    if (this.currentcount === this.maxcount && !this.alreadyFull) {
       this.fireEvent('full');
       this.alreadyFull = true;
     }
